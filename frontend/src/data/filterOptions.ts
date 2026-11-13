@@ -1,0 +1,32 @@
+export const filterOptions = {
+  countries: [
+    "India",
+    "Japan",
+    "Iran",
+    "Taiwan",
+    "USA",
+    "Italy",
+    "South Korea",
+    "France",
+  ],
+  languages: [
+    "Hindi",
+    "Japanese",
+    "Persian",
+    "Mandarin",
+    "Bengali",
+    "English",
+    "Italian",
+    "Korean",
+    "French",
+  ],
+  periods: ["Classic", "1970–1999", "2000–2019", "2020 onwards"],
+  categories: [
+    "Hidden Gem",
+    "Cult Classic",
+    "Acclaimed",
+    "Masterpiece",
+    "Classic",
+    "World Cinema",
+  ],
+};

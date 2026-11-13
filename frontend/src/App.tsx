@@ -10,13 +10,27 @@ import {
   Sparkles,
   ArrowRight,
   Play,
+  X,
+  // SlidersHorizontal,
 } from "lucide-react";
 import "./App.css";
 import DiscoverySection from "./components/DiscoverySection";
 import { collections } from "./data/discoveries";
+import MovieCard from "./components/MovieCard";
+// import { searchMovies } from "./services/movieSearch";
+import { emptyFilters, filterMovies } from "./services/movieFilters";
+import type { MovieFilters } from "./services/movieFilters";
+import FilterPanel from "./components/FilterPanel";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState<MovieFilters>(emptyFilters);
+  const results = filterMovies(search, filters);
+  const hasSearch = search.trim().length > 0;
+  const hasActiveFilters = Object.values(filters).some(
+    (values) => values.length > 0,
+  );
+  const showResults = hasSearch || hasActiveFilters;
 
   return (
     <main className="app">
@@ -80,11 +94,27 @@ function App() {
             <Search size={20} />
             <input
               type="text"
-              placeholder="Search films, series, directors, languages..."
+              placeholder="Search films, countries, languages..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button onClick={() => console.log("Search:", search)}>
+
+            {search && (
+              <button
+                className="clear-search"
+                aria-label="Clear search"
+                onClick={() => setSearch("")}
+              >
+                <X size={17} />
+              </button>
+            )}
+            <button
+              onClick={() =>
+                document.getElementById("search-results")?.scrollIntoView({
+                  behavior: "smooth",
+                })
+              }
+            >
               Explore <ArrowRight size={16} />
             </button>
           </div>
@@ -115,7 +145,35 @@ function App() {
           </button>
         </div>
       </section>
+      <FilterPanel filters={filters} setFilters={setFilters} />
+      {showResults && (
+        <section className="search-results" id="search-results">
+          <div className="collection-header">
+            <div>
+              <span className="section-kicker">YOUR DISCOVERY STARTS HERE</span>
+              <h2>Search Results</h2>
+              <p>
+                {results.length} {results.length === 1 ? "film" : "films"} found
+                for "{search.trim()}"
+              </p>
+            </div>
+          </div>
 
+          {results.length > 0 ? (
+            <div className="movie-grid">
+              {results.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
+            </div>
+          ) : (
+            <div className="no-results">
+              <Search size={30} />
+              <h3>No films found</h3>
+              <p>Try another title, country, language or year.</p>
+            </div>
+          )}
+        </section>
+      )}
       <section className="intro-section" id="collections">
         <div>
           <span className="section-kicker">A DIFFERENT WAY TO DISCOVER</span>
