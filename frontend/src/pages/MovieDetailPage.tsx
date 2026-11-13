@@ -61,6 +61,71 @@ export default function MovieDetailPage() {
               <span>{movie.language}</span>
             </div>
           </div>
+
+          {movie.director && (
+            <div className="detail-extra">
+              <span className="detail-label">DIRECTED BY</span>
+              <p>{movie.director}</p>
+            </div>
+          )}
+
+          {movie.cast && (
+            <div className="detail-extra">
+              <span className="detail-label">CAST</span>
+              <p>{movie.cast.join(" · ")}</p>
+            </div>
+          )}
+
+          {movie.runtimeMinutes && (
+            <div className="detail-extra">
+              <span className="detail-label">RUNTIME</span>
+              <p>{movie.runtimeMinutes} minutes</p>
+            </div>
+          )}
+          {/* </div> */}
+
+          {movie.genres && (
+            <section className="detail-information">
+              <h2>Genres</h2>
+              <div className="detail-tags">
+                {movie.genres.map((genre) => (
+                  <span key={genre}>{genre}</span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {movie.themes && (
+            <section className="detail-information">
+              <h2>Themes</h2>
+              <div className="detail-tags">
+                {movie.themes.map((theme) => (
+                  <span key={theme}>{theme}</span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {movie.synopsis && (
+            <section className="detail-information">
+              <h2>Story</h2>
+              <p>{movie.synopsis}</p>
+            </section>
+          )}
+
+          {movie.criticalReception && (
+            <section className="detail-information">
+              <h2>Critical Reception</h2>
+              <p>{movie.criticalReception}</p>
+            </section>
+          )}
+
+          {movie.culturalSignificance && (
+            <section className="detail-information">
+              <h2>Cultural Significance</h2>
+              <p>{movie.culturalSignificance}</p>
+            </section>
+          )}
         </div>
       </section>
     </main>

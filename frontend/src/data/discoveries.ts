@@ -7,6 +7,18 @@ export interface Movie {
   description: string;
   category: string;
   artwork: string;
+
+  releaseDate?: string;
+  runtimeMinutes?: number;
+  director?: string;
+  cast?: string[];
+  genres?: string[];
+  themes?: string[];
+  synopsis?: string;
+  criticalReception?: string;
+  culturalSignificance?: string;
+  posterUrl?: string;
+  contentType?: "movie" | "series";
 }
 
 export interface Collection {
@@ -33,6 +45,24 @@ export const collections: Collection[] = [
         description: "An unexpected connection born from a lunchbox delivery.",
         category: "Hidden Gem",
         artwork: "artwork-one",
+
+        director: "Ritesh Batra",
+        cast: ["Irrfan Khan", "Nimrat Kaur", "Nawazuddin Siddiqui"],
+        genres: ["Drama", "Romance"],
+        themes: [
+          "Loneliness",
+          "Human connection",
+          "Second chances",
+          "Urban life",
+        ],
+        runtimeMinutes: 104,
+        contentType: "movie",
+        synopsis:
+          "An unusual mistake in Mumbai’s lunchbox delivery system connects a lonely office worker and an unhappy housewife. Through handwritten notes exchanged inside a lunchbox, two strangers gradually develop an unexpected emotional bond.",
+        criticalReception:
+          "Widely acclaimed for its restrained storytelling, performances and intimate portrayal of everyday human relationships.",
+        culturalSignificance:
+          "The film brought international attention to Mumbai’s dabbawala delivery network and demonstrated how a deeply local story could resonate with audiences across cultures.",
       },
       {
         id: 2,
