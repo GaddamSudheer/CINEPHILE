@@ -1,42 +1,38 @@
-import type { Movie } from "../data/discoveries";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import type { Movie } from "../data/discoveries";
 
 interface MovieCardProps {
   movie: Movie;
 }
 
-function MovieCard({ movie }: MovieCardProps) {
-  return (
-    <article className="movie-card">
-      <div className={`movie-artwork ${movie.artwork}`}>
-        <span className="artwork-category">{movie.category}</span>
-        <div className="artwork-title">
-          <span>{movie.country.toUpperCase()}</span>
-          <h3>{movie.title}</h3>
-          <span>{movie.year}</span>
-        </div>
-        <button
-          className="movie-open"
-          aria-label={`Explore ${movie.title}`}
-          onClick={() => console.log("Selected:", movie.title)}
-        >
-          <ArrowUpRight size={19} />
-        </button>
-      </div>
-
-      <div className="movie-info">
-        <div className="movie-title-row">
-          <h3>{movie.title}</h3>
-          <span>{movie.year}</span>
-        </div>
-        <p>{movie.description}</p>
-        <div className="movie-meta">
-          <span>{movie.country}</span>
-          <span>{movie.language}</span>
-        </div>
-      </div>
-    </article>
-  );
+function createSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
-export default MovieCard;
+export default function MovieCard({ movie }: MovieCardProps) {
+  return (
+    <Link to={`/movies/${createSlug(movie.title)}`} className="movie-card">
+      <div className={`movie-artwork ${movie.artwork}`}>
+        <span className="movie-category">{movie.category}</span>
+        <span className="movie-artwork-title">{movie.title}</span>
+        <span className="movie-card-action">
+          Explore film <ArrowUpRight size={16} />
+        </span>
+      </div>
+
+      <div className="movie-card-info">
+        <div>
+          <h3>{movie.title}</h3>
+          <p>
+            {movie.year} · {movie.country}
+          </p>
+        </div>
+        <ArrowUpRight size={18} />
+      </div>
+    </Link>
+  );
+}

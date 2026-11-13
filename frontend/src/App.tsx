@@ -21,8 +21,10 @@ import MovieCard from "./components/MovieCard";
 import { emptyFilters, filterMovies } from "./services/movieFilters";
 import type { MovieFilters } from "./services/movieFilters";
 import FilterPanel from "./components/FilterPanel";
+import { Link, Routes, Route } from "react-router-dom";
+import MovieDetailPage from "./pages/MovieDetailPage";
 
-function App() {
+function HomePage() {
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<MovieFilters>(emptyFilters);
   const results = filterMovies(search, filters);
@@ -35,14 +37,14 @@ function App() {
   return (
     <main className="app">
       <header className="navbar">
-        <a href="/" className="brand">
+        <Link to="/" className="brand">
           <span className="brand-icon">
             <Clapperboard size={23} />
           </span>
           <span>
             CINE<span className="brand-gold">PHILE</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="nav-links">
           <a href="#discover" className="active">
@@ -192,6 +194,15 @@ function App() {
         <DiscoverySection key={collection.id} collection={collection} />
       ))}
     </main>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/movies/:slug" element={<MovieDetailPage />} />
+    </Routes>
   );
 }
 

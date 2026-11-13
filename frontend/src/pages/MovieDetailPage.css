@@ -1,0 +1,152 @@
+.movie-detail-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.detail-navigation {
+  height: 76px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--gold);
+}
+
+.detail-brand {
+  color: var(--gold);
+  font-family: "Playfair Display", serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.movie-detail-hero {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 90px 7%;
+  display: grid;
+  grid-template-columns: minmax(260px, 390px) 1fr;
+  align-items: center;
+  gap: 75px;
+}
+
+.detail-artwork {
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: linear-gradient(145deg, #3d3430, #151519 75%);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.detail-artwork span {
+  font-family: "Playfair Display", serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.8);
+}
+
+.movie-detail-info {
+  max-width: 650px;
+}
+
+.detail-category {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.movie-detail-info h1 {
+  margin: 18px 0;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(38px, 5vw, 66px);
+  line-height: 1.1;
+}
+
+.detail-description {
+  max-width: 580px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.movie-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.movie-metadata > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.movie-metadata svg {
+  color: var(--gold);
+}
+
+.movie-not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+}
+
+.movie-not-found a {
+  margin-top: 15px;
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .detail-navigation {
+    padding: 0 5%;
+  }
+
+  .movie-detail-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 45px 7%;
+  }
+
+  .detail-artwork {
+    width: min(100%, 340px);
+    margin: 0 auto;
+  }
+
+  .movie-detail-info h1 {
+    font-size: 42px;
+  }
+
+  .movie-metadata {
+    gap: 18px;
+  }
+}
